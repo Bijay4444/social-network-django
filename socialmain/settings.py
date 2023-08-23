@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     'authentication',
     'socialapp',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
