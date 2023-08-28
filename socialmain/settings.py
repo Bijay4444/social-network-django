@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "debug_toolbar",
+    'django_filters',
+    'debug_toolbar',
+    'rest_framework',
     'authentication',
     'socialapp',
     'crispy_forms',
@@ -138,3 +140,16 @@ STATIC_ROOT = os.path.join( BASE_DIR, 'assests')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+         "rest_framework.authentication.TokenAuthentication"
+    ],
+    'PAGE_SIZE': 10,
+        
+}
