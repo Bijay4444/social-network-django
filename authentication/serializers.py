@@ -25,4 +25,14 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = models.UserProfile
         fields = ('id', 'user', 'bio', 'profile_image', 'follows', 'followed_by', 'updated', 'created')
         
+
+class UserLoginSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    username = serializers.CharField(max_length=255)
+    password=serializers.CharField(write_only=True)
+    token=serializers.CharField(read_only=True)
     
+    class Meta:
+        model = models.CustomUser
+        fields = ('id', 'username', 'password' , 'token')
+        extra_kwargs = {'password': {'write_only': True}}
