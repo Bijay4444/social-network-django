@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import authenticate
+from rest_framework.authentication import TokenAuthentication
 
 
 # Create your views here.
@@ -13,6 +14,7 @@ class UserRegistrationView(generics.CreateAPIView):
 
 class UserLoginView(generics.CreateAPIView):
     serializer_class = serializers.UserLoginSerializer
+    authentication_classes = [TokenAuthentication]
     
     def post(self, request):
         serializer = self.serializer_class(data=request.data)    
@@ -22,6 +24,8 @@ class UserLoginView(generics.CreateAPIView):
             username = serializer.validated_data.get('username'),
             password = serializer.validated_data.get('password'),
         )
+        
+        print("User: ", user)
         
         if user:
             token, _ = Token.objects.get_or_create(user=user)
