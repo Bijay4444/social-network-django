@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_filters',
     'debug_toolbar',
     'rest_framework',
+    'rest_framework.authtoken',
     'authentication',
     'socialapp',
     'crispy_forms',
